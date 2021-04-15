@@ -6,9 +6,11 @@ using namespace std;
 
 class Events
 {
-	set<Event>events;
+	set<Event*, compare> events;
 
 public:
 	void add();
+	void del();
 	void show();
+
 };

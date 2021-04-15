@@ -36,6 +36,11 @@ void Event::setEventTime(Time_ eventTime)
 	this->eventTime = eventTime;
 }
 
+string Event::toString() const&
+{
+	return string();
+}
+
 bool Event::operator==(const Event& obj) const&
 {
 	if (this->eventDate == obj.eventDate && this->eventTime == obj.eventTime)
