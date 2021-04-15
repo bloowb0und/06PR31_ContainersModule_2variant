@@ -1,7 +1,5 @@
-void Events::add()
-{
-	int eventType = 0;
-	set<Event>::iterator item;
+int eventType = 0;
+	set<Event*>::iterator item;
 
 	string str1, str2, str3;
 	Date d;
@@ -20,7 +18,7 @@ void Events::add()
 
 	for (item = events.begin(); item != events.end(); item++)
 	{
-		if (item->getEventDate() == d && item->getEventTime() == t)
+		if ((*item)->getEventDate() == d && (*item)->getEventTime() == t)
 		{
 			ifExists == true;
 			break;
@@ -46,7 +44,7 @@ void Events::add()
 			cout << "Enter age: ";
 			cin >> a;
 
-			events.insert(BirthDay(str1, str2, a, d, t));
+			events.insert(new BirthDay(str1, str2, a, d, t));
 
 			break;
 
@@ -58,7 +56,7 @@ void Events::add()
 			cout << "Enter place: ";
 			getline(cin, str2);
 
-			events.insert(Meeting(str1, str2, d, t));
+			events.insert(new Meeting(str1, str2, d, t));
 
 			break;
 
@@ -67,11 +65,10 @@ void Events::add()
 			cin.get();
 			getline(cin, str1);
 
-			events.insert(Custom(str1, d, t));
+			events.insert(new Custom(str1, d, t));
 
 			break;
 		}
 	}
 	else
 		cout << "There's an event planned for this date and time\n";
-}
