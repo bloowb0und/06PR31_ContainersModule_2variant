@@ -1,0 +1,54 @@
+void Events::writeToFile(string s1)
+{
+	ofstream file1(s1);
+	set <Event*, compare> tmp;
+	set <Event*, compare>::iterator item;
+
+	if (!file1.is_open())
+	{
+		cout << "There was an error opening a file!\n";
+	}
+	else
+	{
+		string type;
+		string str1, str2, str3;
+		Date d;
+		Time_ t;
+		int a;
+
+		int counter = 0;
+		for (item = events.begin(); item != events.end(); item++)
+		{
+			if (counter == 0)
+			{
+				file1 << (*item)->type();
+				counter++;
+			}
+			else
+			{
+				if (counter != 1)
+					file1 << endl << (*item)->type();
+				
+				file1 << endl << (*item)->getEventDate();
+				file1 << endl << (*item)->getEventTime();
+				if ((*item)->type() == "Meeting")
+				{
+					file1 << endl << ((Meeting*)(*item))->getPerson();
+					file1 << endl << ((Meeting*)(*item))->getPlace();
+				}
+				else if ((*item)->type() == "Custom")
+				{
+					file1 << endl << ((Custom*)(*item))->getDescription();
+				}
+				else if ((*item)->type() == "Birthday")
+				{
+					file1 << endl << ((BirthDay*)(*item))->getHero();
+					file1 << endl << ((BirthDay*)(*item))->getPlace();
+					file1 << endl << ((BirthDay*)(*item))->getAge();
+				}
+			}
+		}
+		file1.close();
+		cout << "Events were written to " << s1 << ".txt\n";
+	}
+}
