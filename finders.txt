@@ -1,0 +1,102 @@
+
+	void FindByTime();
+	void FindByDate();
+	void FindByHero();
+	void FindByPlace();
+	void FindByDescriptions();
+
+
+void Events::FindByTime()
+{
+	Time_ time;
+	cout << "Enter Time:";
+	cin >> time;
+	set<Event*>::iterator iter_time;
+	for ( iter_time = events.begin(); iter_time != events.end(); iter_time++)
+	{
+		if (time == (*iter_time)->getEventTime()) {
+			cout << (*iter_time)->toString() << endl;
+		}
+	}
+}
+
+void Events::FindByDate()
+{
+	Date date;
+	cout << "Enter Date:";
+	cin >> date;
+	set<Event*>::iterator iter_date;
+	for (iter_date = events.begin(); iter_date != events.end(); iter_date++)
+	{
+		if (date == (*iter_date)->getEventDate()) {
+			cout << (*iter_date)->toString() << endl;
+		}
+	}
+}
+
+void Events::FindByHero()
+{	
+	set<BirthDay*> bday;
+	set<BirthDay*>::iterator iter_bday;
+	string hero;
+	cout << "Enter hero:";
+	getline(cin, hero);
+	set<Event*>::iterator iter_hero;
+	for (iter_hero = events.begin(); iter_hero != events.end(); iter_hero++)
+	{
+		if ((*iter_hero)->type() == "Birthday") {
+			bday.insert(((BirthDay*)(*iter_hero)));
+		}
+	}
+	for (iter_bday = bday.begin(); iter_bday != bday.end(); iter_bday++)
+	{
+		cout << (*iter_bday)->toString() << endl;
+	}
+}
+
+void Events::FindByPlace()
+{
+	set<Meeting*> place;
+	set<Meeting*>::iterator iter_place;
+	set<BirthDay*> bday;
+	set<BirthDay*>::iterator iter_bday;
+	string place1;
+	cout << "Enter place: ";
+	getline(cin, place1);
+	set<Event*>::iterator iter_plc;
+	for (iter_plc  = events.begin(); iter_plc != events.end(); iter_plc++)
+	{
+		if ((*iter_plc)->type() == "Meeting") {
+			place.insert(((Meeting*)(*iter_plc)));
+		}
+		else if ((*iter_plc)->type() == "Birthday") {
+			bday.insert(((BirthDay*)(*iter_plc)));
+		}
+	}
+	for (iter_place = place.begin(); iter_place != place.end(); iter_place) {
+		cout << (*iter_place)->toString() << endl;
+	}
+	for (iter_bday = bday.begin(); iter_bday != bday.end(); iter_bday++)
+	{
+		cout << (*iter_bday)->toString() << endl;
+	}
+
+
+
+}
+
+void Events::FindByDescriptions()
+{
+	set<Custom*> desc;
+	set<Custom*>::iterator iter_desc;
+	string desc1;
+	cout << "Enter descriptions: ";
+	getline(cin, desc1);
+	set<Event*>::iterator iter_dsc;
+	for (iter_dsc = events.begin(); iter_dsc != events.end(); iter_dsc++)
+	{
+		if ((*iter_dsc)->type() == "Custom") {
+			desc.insert(((Custom*)(*iter_dsc)));
+		}
+	}
+}
