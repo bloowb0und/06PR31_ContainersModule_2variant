@@ -1,0 +1,10 @@
+void Events::show()
+{
+	set<Event*>::iterator item;
+
+	for (item = events.begin(); item != events.end(); item++)
+	{
+		cout << (*item)->toString() << endl;
+	}
+}
+
