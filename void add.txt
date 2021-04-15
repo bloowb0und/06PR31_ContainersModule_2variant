@@ -1,0 +1,77 @@
+void Events::add()
+{
+	int eventType = 0;
+	set<Event>::iterator item;
+
+	string str1, str2, str3;
+	Date d;
+	Time_ t;
+	int a;
+	bool ifExists = false;
+
+	cout << "What type of event do you want to add? (1 - birthday; 2 - meeting; 3 - custom)\n";
+	cin >> eventType;
+
+	cout << "Enter event date: ";
+	cin >> d;
+
+	cout << "Enter event time: ";
+	cin >> t;
+
+	for (item = events.begin(); item != events.end(); item++)
+	{
+		if (item->getEventDate() == d && item->getEventTime() == t)
+		{
+			ifExists == true;
+			break;
+		}
+	}
+
+	if (!ifExists)
+	{
+		switch (eventType)
+		{
+		default:
+			cout << "Error while choosing event type\n";
+			break;
+
+		case 1:
+			cout << "Enter hero: ";
+			cin.get();
+			getline(cin, str1);
+
+			cout << "Enter place: ";
+			getline(cin, str2);
+
+			cout << "Enter age: ";
+			cin >> a;
+
+			events.insert(BirthDay(str1, str2, a, d, t));
+
+			break;
+
+		case 2:
+			cout << "Enter person: ";
+			cin.get();
+			getline(cin, str1);
+
+			cout << "Enter place: ";
+			getline(cin, str2);
+
+			events.insert(Meeting(str1, str2, d, t));
+
+			break;
+
+		case 3:
+			cout << "Enter event description: ";
+			cin.get();
+			getline(cin, str1);
+
+			events.insert(Custom(str1, d, t));
+
+			break;
+		}
+	}
+	else
+		cout << "There's an event planned for this date and time\n";
+}
