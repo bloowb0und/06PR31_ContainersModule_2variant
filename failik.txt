@@ -1,0 +1,60 @@
+header:
+set<Event*, compare> readFromFile(string s1);
+cpp:
+set<Event*,compare> Events::readFromFile(string s1)
+{
+	ifstream file1(s1);
+	set <Event*,compare> tmp;
+
+	if (!file1.is_open())
+	{
+		cout << "There was an error opening a file.\n";
+	}
+	else
+	{
+		string type;
+		string str1, str2, str3;
+		Date d;
+		Time_ t;
+		int a;
+
+		while (!file1.eof())
+		{
+			getline(file1, type);
+
+			if (type == "Birthday")
+			{
+				cin >> (file1, d);
+				cin >> (file1, t);
+				cin >> (file1, str1);
+				cin >> (file1, str2);
+				cin >> (file1, a);
+
+				tmp.insert(new BirthDay(str1, str2, a, d, t));
+			}
+			else if (type == "Meeting")
+			{
+				cin >> (file1, str1);
+				cin >> (file1, str2);
+				cin >> (file1, d);
+				cin >> (file1, t);
+
+				tmp.insert(new Meeting(str1, str2, d, t));
+			}
+			else if (type == "Custom")
+			{
+				cin >> (file1, str1);
+				cin >> (file1, str2);
+				cin >> (file1, d);
+
+				tmp.insert(new Custom(str1,d,t));
+			}
+
+		}
+		file1.close();
+
+		return tmp;
+		cout << "Data loaded successfully\n";
+	}
+	return tmp;
+}
