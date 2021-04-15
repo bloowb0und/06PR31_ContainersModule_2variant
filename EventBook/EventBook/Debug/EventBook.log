@@ -1,0 +1,5 @@
+﻿  Events.cpp
+D:\itstep\РПО\C++\OOP\Modules\Module Containers_Algorithms\EventBook\EventBook\Events.cpp(27,13): warning C4553: '==': result of expression not used; did you intend '='?
+D:\itstep\РПО\C++\OOP\Modules\Module Containers_Algorithms\EventBook\EventBook\Events.cpp(89,6): warning C4101: 'a': unreferenced local variable
+D:\itstep\РПО\C++\OOP\Modules\Module Containers_Algorithms\EventBook\EventBook\Events.cpp(361,7): warning C4101: 'a': unreferenced local variable
+  EventBook.vcxproj -> D:\itstep\РПО\C++\OOP\Modules\Module Containers_Algorithms\EventBook\Debug\EventBook.exe
